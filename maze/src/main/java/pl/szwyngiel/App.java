@@ -36,22 +36,44 @@ public class App extends JFrame
 
     private void buildMaze(int x, int y) {
         Graphics g = image.getGraphics();
-        g.drawLine(x, y, x+MapSite.Length, y+MapSite.Length);
+        // g.drawLine(x, y, x+MapSite.Length, y+MapSite.Length);
 
-        Wall w1 = new Wall(Directions.North);
-        w1.setX(x);
-        w1.setY(y);
-        w1.draw(image);
+        // Wall w1 = new Wall(Directions.North);
+        // w1.setX(x);
+        // w1.setY(y);
+        // w1.draw(image);
 
-        Wall w2 = new Wall(Directions.East);
-        w2.setX(x);
-        w2.setY(y);
-        w2.draw(image);
+        // Wall w2 = new Wall(Directions.East);
+        // w2.setX(x);
+        // w2.setY(y);
+        // w2.draw(image);
 
-        Room r1 = new Room(x + 20, y-10, 1);
-        r1.setSite(Directions.North, w1);
-        r1.setSite(Directions.East, w2);
+        Room r1 = new Room(x, y, 1);
+        r1.setSite(Directions.North, new Wall(Directions.North));
+        r1.setSite(Directions.East, new Wall(Directions.East));
+        r1.setSite(Directions.South, new Wall(Directions.South));
+        r1.setSite(Directions.West, new Wall(Directions.West));
         r1.draw(image);
+
+        Room r2 = new Room(x + MapSite.Length, y, 2);
+        r2.setSite(Directions.North, new Wall(Directions.North));
+        r2.setSite(Directions.East, new Wall(Directions.East));
+        r2.setSite(Directions.South, new Wall(Directions.South));
+        r2.setSite(Directions.West, new Wall(Directions.West));
+        r2.draw(image);
+
+        Door d1 = new Door(r1, r2);
+        d1.draw(image);
+
+        Room r3 = new Room(x + MapSite.Length, y+MapSite.Length, 3);
+        r3.setSite(Directions.North, new Wall(Directions.North));
+        r3.setSite(Directions.East, new Wall(Directions.East));
+        r3.setSite(Directions.South, new Wall(Directions.South));
+        r3.setSite(Directions.West, new Wall(Directions.West));
+        r3.draw(image);
+
+        Door d2 = new Door(r2, r3);
+        d2.draw(image);
 
     }
     public static void main( String[] args )

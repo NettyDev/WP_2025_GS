@@ -1,13 +1,14 @@
 package pl.szwyngiel;
 
-import java.awt.Image;
+import java.awt.*;
 
-enum Directions {North,East,South,West};
+
+enum Directions {North, East, South, West};
 
 public abstract class MapSite {
     private int x;
-    private int y;
-    public static final int Length = 50;
+    private int y; // współrzędne elementu na mapie
+    public static final int Length = 50;  // długość ścian pokoju
 
     public MapSite(int x, int y) {
         this.x = x;

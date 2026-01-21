@@ -1,11 +1,10 @@
 package pl.szwyngiel;
 
-import java.awt.Image;
+import java.awt.*;
 
-public class Room extends MapSite {
-    private int nr;
-    private MapSite[] sites = new MapSite[4];
-
+public class Room extends MapSite{
+    private int nr; // numer pokoju
+    private MapSite [] sietes = new MapSite[4]; // tablica, która może przechowywać zarówno drzwi, jak i ściany
 
     public Room(int x, int y, int nr) {
         super(x, y);
@@ -14,37 +13,42 @@ public class Room extends MapSite {
 
     @Override
     public void draw(Image image) {
-        for(MapSite mapSite: sites) {
-            if(mapSite != null)
+        for (MapSite mapSite: sietes) {
+            if (mapSite != null)
                 mapSite.draw(image);
         }
     }
 
-    public void setSite(Directions dir, MapSite site) {
-        if(site instanceof Wall) {
-            switch (dir) {
-                case North:
-                    site.setX(getX());
-                    site.setY(getY());
-                    ((Wall)site).setDirection(Directions.North);
-                    break;
-                case West:
-                    site.setX(getX());
-                    site.setY(getY());
-                    ((Wall)site).setDirection(Directions.West);
-                    break;
-                case South:
-                    site.setX(getX());
-                    site.setY(getY() + MapSite.Length);
-                    ((Wall)site).setDirection(Directions.South);
-                    break;
-                default:
-                    site.setX(getX() + MapSite.Length);
-                    site.setY(getY());
-                    ((Wall)site).setDirection(Directions.East);
-                    break;
+    /**
+     * Wstawia element pokoju we wskazanym kierunku
+     * @param d - kierunek
+     * @param mapSite - element, który wstawiamy
+     */
+    public void setSite(Directions d, MapSite mapSite) {
+        if (mapSite instanceof Wall) {  // jeżeli ścian
+            switch (d) {
+                case North -> {
+                    mapSite.setX( getX() ); // ustawiamy na wsp. x pokoju
+                    mapSite.setY( getY() ); // ustawiamy na wsp. y pokoju
+                    ((Wall) mapSite).setDirection(Directions.North);
+                }
+                case West -> {
+                    mapSite.setX( getX() ); // ustawiamy na wsp. x pokoju
+                    mapSite.setY( getY() ); // ustawiamy na wsp. y pokoju
+                    ((Wall) mapSite).setDirection(Directions.West);
+                }
+                case South -> {
+                    mapSite.setX( getX() );
+                    mapSite.setY( getY() + MapSite.Length);
+                }
+                default -> { // East
+                    mapSite.setX( getX() + Length );
+                    mapSite.setY( getY() );
+                }
             }
         }
-        sites[dir.ordinal()] = site;
+        sietes[d.ordinal()] = mapSite;
+
     }
+
 }

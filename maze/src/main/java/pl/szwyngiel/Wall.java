@@ -1,8 +1,10 @@
 package pl.szwyngiel;
 
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 
+/**
+ * Reprezentuje ścianę
+ */
 public class Wall extends MapSite {
     Directions direction;
 
@@ -11,24 +13,22 @@ public class Wall extends MapSite {
         this.direction = direction;
     }
 
+    public void setDirection(Directions d)
+    {
+        direction = d;
+    }
+
     @Override
     public void draw(Image image) {
         int x = getX();
-        int y = getY();
+        int y = getY();   //  pobieramy współrzędne lini
         Graphics g = image.getGraphics();
         switch (direction) {
-            case North:
-                g.drawLine(x, y, x+MapSite.Length, y);
+            case North, South:
+                g.drawLine(x, y, x + MapSite.Length, y);  // ściana pomioma
                 break;
-            case South:
-                g.drawLine(x, y, x+MapSite.Length, y);
             default:
-                g.drawLine(x, y, x, y + MapSite.Length);
-                break;
+                g.drawLine(x, y, x, y + MapSite.Length);  // ściana pionowa
         }
-    }
-
-    public void setDirection(Directions dir) {
-        direction = dir;
     }
 }

@@ -23,31 +23,27 @@ public class Door extends MapSite{
             room_1.setSite(Directions.East, this);
             room_2.setSite(Directions.West, this);
             direction = Directions.East;
-        } else
-            if (x1 > x2) { // pokoj leżą jeden obok drugiego - w poziomie
-                setX(x1);  // pokój 1 jest po prawej - drzwi mają współrzędne x2,y2
-                setY(y1);
-                room_2.setSite(Directions.East, this);
-                room_1.setSite(Directions.West, this);
-                direction = Directions.East;
-            } else { // pokoje leżą jeden pod drugim - w pionie
-                direction = Directions.North;
-                if (y2 > y1) {  // pokój 2 leży niżej   |_ _|
-                    setX(x2);                        // | R2 |
-                    setY(y2);
-                    room_1.setSite(Directions.South, this);
-                    room_2.setSite(Directions.North, this);
-                }
-                else  {
-                    setX(x1);
-                    setY(y1);
-                    room_2.setSite(Directions.South, this);
-                    room_1.setSite(Directions.North, this);
-                }
+        } else if (x1 > x2) { // pokoj leżą jeden obok drugiego - w poziomie
+            setX(x1);  // pokój 1 jest po prawej - drzwi mają współrzędne x2,y2
+            setY(y1);
+            room_2.setSite(Directions.East, this);
+            room_1.setSite(Directions.West, this);
+            direction = Directions.East;
+        } else { // pokoje leżą jeden pod drugim - w pionie
+            direction = Directions.North;
+            if (y2 > y1) {  // pokój 2 leży niżej   |_ _|
+                setX(x2);                        // | R2 |
+                setY(y2);
+                room_1.setSite(Directions.South, this);
+                room_2.setSite(Directions.North, this);
             }
-
-    {
-    }
+            else  {
+                setX(x1);
+                setY(y1);
+                room_2.setSite(Directions.South, this);
+                room_1.setSite(Directions.North, this);
+            }
+        }
     }
 
     @Override

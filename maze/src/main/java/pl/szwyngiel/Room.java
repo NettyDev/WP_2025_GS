@@ -11,6 +11,10 @@ public class Room extends MapSite{
         this.nr = nr;
     }
 
+    public int getNr() {
+        return nr;
+    }
+
     @Override
     public void draw(Image image) {
         for (MapSite mapSite: sietes) {
@@ -48,7 +52,5 @@ public class Room extends MapSite{
             }
         }
         sietes[d.ordinal()] = mapSite;
-
     }
-
 }

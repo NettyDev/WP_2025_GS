@@ -2,7 +2,6 @@ package pl.szwyngiel;
 
 import java.awt.*;
 
-
 enum Directions {North, East, South, West};
 
 public abstract class MapSite {

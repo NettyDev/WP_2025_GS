@@ -30,6 +30,7 @@ public class View extends JFrame {
     private final Font fontTextField  = new Font("Arial", Font.PLAIN, 30);
     private final Font fontButton = new Font("Arial", Font.PLAIN, 16);
 
+    private final DisplaySubject displaySubject = new DisplaySubject();
     public View() {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -62,6 +63,7 @@ public class View extends JFrame {
         panelButtons.add(buttonEqu);
         panelButtons.add(buttonAdd);
 
+        setTitle("Kalkulator by Grzegorz Szwyngiel");
         setLayout(new BorderLayout());
         add(textField, BorderLayout.NORTH);
         add(panelButtons, BorderLayout.CENTER);
@@ -76,6 +78,7 @@ public class View extends JFrame {
 
     public void setText(String text) {
         textField.setText(text);
+        displaySubject.setText(text);
     }
 
     public JButton[] getNumberButtons() {
@@ -107,5 +110,9 @@ public class View extends JFrame {
 
     public JButton getButtonClr() {
         return buttonClr;
+    }
+
+    public void addDisplayObserver(DisplayObserver observer) {
+        displaySubject.addObserver(observer);
     }
 }

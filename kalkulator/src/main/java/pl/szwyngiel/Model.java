@@ -1,12 +1,9 @@
 package pl.szwyngiel;
 
-public class Calc {
-    private int first = -1;
-    private int second = -1;
+public class Model {
+    private int first = 0;
+    private int second = 0;
     private Operation operation;
-
-    public Calc() {
-    }
 
     public void setFirst(int first) {
         this.first = first;
@@ -20,18 +17,6 @@ public class Calc {
         this.operation = operation;
     }
 
-    public int getFirst() {
-        return first;
-    }
-
-    public int getSecond() {
-        return second;
-    }
-
-    public Operation getOperation() {
-        return operation;
-    }
-
     public int getResult() {
         switch (operation) {
             case ADD:
@@ -41,14 +26,18 @@ public class Calc {
             case MUL:
                 return first * second;
             case DIV:
-                return first / second;
+                if(second != 0) {
+                    return first / second;
+                } else {
+                    throw new ArithmeticException("Dzielenie przez zero");
+                }
             default:
-                return 0;
+                throw new IllegalArgumentException("Operator niezdefiniowany");
         }
     }
 
     public void clear() {
-        this.first = -1;
+        this.first = 0;
         this.second = -1;
         this.operation = null;
     }

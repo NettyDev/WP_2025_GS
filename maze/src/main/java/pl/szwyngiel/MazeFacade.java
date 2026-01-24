@@ -10,12 +10,10 @@ public class MazeFacade {
         this.mazeBuilder = new MazeBuilder();
     }
 
-    public void createMaze() {
+    public Maze createMaze(int x, int y) {
         mazeBuilder.buildMaze();
 
         int nr = 1;
-        int x = 100;
-        int y = 50;
         int length = MapSite.Length;
 
         mazeBuilder.buildRoom(x, y, nr++);
@@ -36,7 +34,7 @@ public class MazeFacade {
         mazeBuilder.buildDoor(4, 7);
         mazeBuilder.buildDoor(7, 6);
 
-        this.maze = mazeBuilder.getMaze();
+        return mazeBuilder.getMaze();
     }
     
     public void draw(Image image) {

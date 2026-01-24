@@ -10,7 +10,7 @@ public class App extends JFrame
 
 
     public App() {
-        setSize(400, 300);   // rozmiar okna aplikacji
+        setSize(800, 600);   // rozmiar okna aplikacji
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // sposób zamykania aplikacji - standardowy
         setLayout(new BorderLayout());  // ustawienie menadżera rozkładu
         add(panel, BorderLayout.CENTER);
@@ -18,8 +18,10 @@ public class App extends JFrame
         add(panelMenu, BorderLayout.NORTH);
         JButton buttonDraw = new JButton("Draw maze");
         buttonDraw.addActionListener(event -> {
-            mazeFacade.createMaze();
-            mazeFacade.draw(panel.getImage());
+            Maze nr1 = mazeFacade.createMaze(100, 50);
+            Maze nr2 = mazeFacade.createMaze(300, 50);
+            nr1.draw(panel.getImage());
+            nr2.draw(panel.getImage());
             panel.repaint();
         });
         panelMenu.add(buttonDraw);

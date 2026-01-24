@@ -24,6 +24,7 @@ public class View extends JFrame {
     private final JButton buttonClr = new JButton("C");
 
     private final JTextField textField = new JTextField(10);
+    private final JLabel textLabel = new JLabel();
 
     private final JPanel panelButtons = new JPanel(new GridLayout(4,4));
 
@@ -46,6 +47,9 @@ public class View extends JFrame {
         buttonEqu.setFont(fontButton);
         buttonClr.setFont(fontButton);
 
+        textLabel.setFont(fontTextField);
+        // textLabel.setPreferredSize();
+
         panelButtons.add(button9);
         panelButtons.add(button8);
         panelButtons.add(button7);
@@ -64,9 +68,10 @@ public class View extends JFrame {
         panelButtons.add(buttonAdd);
 
         setTitle("Kalkulator by Grzegorz Szwyngiel");
-        setLayout(new BorderLayout());
-        add(textField, BorderLayout.NORTH);
-        add(panelButtons, BorderLayout.CENTER);
+        setLayout(new GridLayout(3,1));
+        add(textField);
+        add(textLabel);
+        add(panelButtons);
         pack();
         setSize(200,300);
         setVisible(true);
@@ -78,6 +83,7 @@ public class View extends JFrame {
 
     public void setText(String text) {
         textField.setText(text);
+        textLabel.setText(text);
         displaySubject.setText(text);
     }
 
